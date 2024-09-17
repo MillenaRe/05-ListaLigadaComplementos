@@ -70,7 +70,7 @@ void menu()
 
 void inicializar()
 {
-	// se a lista já possuir elementos
+	// se a lista jÃ¡ possuir elementos
 // libera a memoria ocupada
 	NO* aux = primeiro;
 	while (aux != NULL) {
@@ -125,29 +125,74 @@ void inserirElemento()
 	cin >> novo->valor;
 	novo->prox = NULL;
 
-	if (primeiro == NULL)
-	{
-		primeiro = novo;
-	}
-	else
-	{
-		// procura o final da lista
-		NO* aux = primeiro;
-		while (aux->prox != NULL) {
-			aux = aux->prox;
-		}
-		aux->prox = novo;
-	}
+	NO* aux = primeiro;
+	while (aux != NULL) {
+        	if (aux->valor == novo->valor) {
+			cout << "ja existe um elemento com esse valor! \n";
+			free(novo);
+			return;
+       		}
+		aux = aux->prox;
+    	}
+
+    	if (primeiro == NULL || primeiro->valor > novo->valor) {
+        	novo->prox = primeiro;
+        	primeiro = novo;
+    	} else {
+        	NO* anterior = NULL;
+        	aux = primeiro;
+        	while (aux != NULL && aux->valor < novo->valor) {
+           		anterior = aux;
+            		aux = aux->prox;
+        	}
+        	anterior->prox = novo;
+		novo->prox = aux;
+    	}
+
+    	cout << "elemento inserido! \n";
 }
 
 void excluirElemento()
 {
+	int valorBusca;
+	cout << "digite o valor que deseja buscar: ";
+	cin >> valorBusca;
 
+	NO* aux = primeiro;
+	while (aux != NULL && aux->valor <= valorBusca) {
+        	if (aux->valor == valorBusca) {
+            		cout << "o elemento esta na lista. \n";
+            		return;
+        	}
+        	aux = aux->prox;
+    	}
+	
+	cout << "o elemento nao foi encontrado. \n";
 }
 
 void buscarElemento()
 {
+	int valorExcluir;
+	cout << "digite o valor que deseja excluir: ";
+	cin >> valorExcluir;
 
+    	NO* aux = primeiro;
+	NO* anterior = NULL;
+
+    	while (aux != NULL && aux->valor < valorExcluir) {
+        	anterior = aux;
+        	aux = aux->prox;
+   	}
+
+    	if (aux != NULL && aux->valor == valorExcluir) {
+        	if (anterior == NULL) {
+            	primeiro = aux->prox;
+        	} else {
+        		anterior->prox = aux->prox;
+        	}
+        	free(aux);
+        	cout << "elemento excluido! \n";
+	} else {
+        	cout << "o elemento nao foi encontrado. \n";
+	}
 }
-
-
