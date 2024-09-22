@@ -128,7 +128,7 @@ void inserirElemento()
 	if (primeiro == NULL)
 	{
 		primeiro = novo;
-		ultimo = novo
+		ultimo = novo;
 	}
 	else
 	{
