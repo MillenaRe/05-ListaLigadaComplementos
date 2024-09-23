@@ -152,7 +152,7 @@ void inserirElemento()
     	cout << "elemento inserido! \n";
 }
 
-void excluirElemento()
+void buscarElemento()
 {
 	int valorBusca;
 	cout << "digite o valor que deseja buscar: ";
@@ -170,7 +170,7 @@ void excluirElemento()
 	cout << "o elemento nao foi encontrado. \n";
 }
 
-void buscarElemento()
+void excluirElemento()
 {
 	int valorExcluir;
 	cout << "digite o valor que deseja excluir: ";
